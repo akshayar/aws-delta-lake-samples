@@ -61,3 +61,19 @@ deltaTable.history().show()
 ```python
 spark.stop()
 ```
+
+### Symlink Creation
+```python
+deltaTable.generate("symlink_format_manifest")  
+```
+
+### Create table form symlink
+```python
+spark.sql("""CREATE  TABLE IF NOT EXISTS delta_table_demo_sym(id string, creation_date string,
+last_update_time string)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+location
+'s3://akshaya-delta-lake/delta_table_demo_2/db/delta_table/_symlink_format_manifest/'""");
+```

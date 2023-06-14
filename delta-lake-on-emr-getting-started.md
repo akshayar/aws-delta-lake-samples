@@ -58,9 +58,7 @@ deltaTable = DeltaTable.forPath(spark, "s3://akshaya-delta-lake/delta_table_demo
 deltaTable.toDF().show()
 deltaTable.history().show()
 ```
-```python
-spark.stop()
-```
+
 
 ### Symlink Creation
 ```python

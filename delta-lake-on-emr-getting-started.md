@@ -23,6 +23,7 @@ pyspark     \
 ```
 ### Chosing the glue database
 **Resolving - IllegalArgumentException: Can not create a Path from an empty string**
+
 Refer https://docs.aws.amazon.com/emr/latest/ReleaseGuide/Deltaconsiderations-limitations.html
 If you create a database in the AWS Glue Data Catalog outside of Apache Spark, the database could have an empty LOCATION field. Because Spark doesn't allow databases to be created with an empty location property, you'll get the following error if you use Spark in Amazon EMR to create a Delta table in a Glue database and the database has an empty LOCATION property:
 

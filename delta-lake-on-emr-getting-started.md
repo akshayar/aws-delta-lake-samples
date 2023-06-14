@@ -75,3 +75,19 @@ OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 location
 's3://akshaya-delta-lake/delta_table_demo_2/db/delta_table/_symlink_format_manifest/'""");
 ```
+
+### Multiple ways of reading
+#### DeltaTable module
+```python
+from delta.tables import *
+deltaTable = DeltaTable.forPath(spark, "s3://akshaya-delta-lake/delta_table_demo_2/db/delta_table")
+deltaTable.toDF().show()
+```
+#### Spark SQL
+```python
+spark.sql("select * from delta.`s3://akshaya-delta-lake/delta_table_demo_2/db/delta_table`").show()
+```
+#### Spark Dataframe
+```python
+spark.read.format("delta").load("s3://akshaya-delta-lake/delta_table_demo_2/db/delta_table").show()
+```
